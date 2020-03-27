@@ -1,0 +1,24 @@
+﻿@{ 
+    var applicationName = "Pokedéx";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title> @applicationName</title>
+    <link rel="stylesheet" href="~/Content/css/site.css" />
+</head>
+<body>
+    <nav>
+        <img id="logo" src="~/Content/Decorations/pokedex.png" />
+        <ul>
+            <li class="txt">Pokedéx</li>
+        </ul>
+    </nav>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

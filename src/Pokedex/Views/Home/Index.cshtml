@@ -1,0 +1,32 @@
+﻿@model Pokedex.Data.PokemonCollection
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<div>
+    <h1 class="Title txt">Generation 1</h1>
+
+</div>
+<div class="container pokemonContainer">
+    @foreach (var pokemon in Model.Pokemon)
+    {
+        <div class="pokemonFormm txt">
+            <form id="@pokemon.id" method="POST" action='@Url.Action("PokemonDetail","Detail")'>
+                <div id="@pokemon.id" class="content pokemon formEl">
+                    <h2 style="text-align: center;">@pokemon.name</h2>
+                    <ul class="pokemonAttrs">
+                        @for (var i = 0; i < pokemon.type.Length; i++)
+                        {
+                            <li> Type : @pokemon.type[i] </li>
+                        }
+                    </ul>
+                    <img class="imgPokemon" src="@pokemon.img" />
+                    <i><b><p class="num"># @pokemon.num</p></b></i>
+                    <input type="hidden" name="idPokemon" value="@pokemon.id">
+                    <input class="detaljeButton" formtarget="_blank" type="submit" value="Detaljer" />
+                </div>
+            </form>
+        </div>
+     }
+</div>
+

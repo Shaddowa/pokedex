@@ -1,0 +1,93 @@
+﻿@model Pokedex.Data.PokemonCollection
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<div id="back" class="txt">
+    <input class="back" type="button" value=" ↩ Back to Pokedéx" onclick="location.href='@Url.Action("Index", "Home")'" />
+</div>
+<div>
+    <h1 class="Title txt"> @Model.Pokemon[ViewBag.Id].name</h1>
+</div>
+
+<div class="containerDetail">
+    <div class="contentDetail txt">
+        <div class="DetailPokemonPicture">
+            <img id="PokemonImg" src="@Model.Pokemon[ViewBag.Id].img" />
+        </div>
+        <div class="DetailPokemon">
+            <h1>stats:</h1>
+            <p>Height : @Model.Pokemon[ViewBag.Id].height</p>
+            <p>Weight : @Model.Pokemon[ViewBag.Id].weight</p>
+            <p>Candy : @Model.Pokemon[ViewBag.Id].candy</p>
+            <p>Egg : @Model.Pokemon[ViewBag.Id].egg</p>
+            <p>Spawn Chance : @Model.Pokemon[ViewBag.Id].spawn_chance</p>
+            <p>Avarage Spawns : @Model.Pokemon[ViewBag.Id].avg_spawns</p>
+            <p>Spawn Time : @Model.Pokemon[ViewBag.Id].spawn_time</p>
+            @if (@Model.Pokemon[ViewBag.Id].multipliers != null)
+            {
+                <p>Multipliers : @Model.Pokemon[ViewBag.Id].multipliers[0]</p>
+            }
+            else
+            {
+                <p>Multipliers : None</p>
+            }
+            <p>weaknesses :</p>
+            <ul>
+                @foreach (var fear in Model.Pokemon[ViewBag.Id].weaknesses)
+                {
+                    <li>@fear</li>
+                }
+
+            </ul>
+        </div>
+        @if (ViewBag.OnlyStatus == false)
+        {
+
+            <div class="pokemonHistory txt">
+                @if (ViewBag.TwoEvolutions)
+                {
+                    <div class="historyItem txt">
+                        <div class="historyItemInfo">
+                            <p>@ViewBag.First.name</p>
+                            <p>#@ViewBag.First.num</p>
+                        </div>
+                    </div>
+                    <span class="arrow"> ➠</span>
+                    <div class="historyItem">
+                        <div class="historyItemInfo">
+                            <p>@ViewBag.Second.name</p>
+                            <p>#@ViewBag.Second.num</p>
+                        </div>
+                    </div>
+                }
+                @if (ViewBag.ThreeEvolutions)
+                {
+                    <div class="historyItem">
+                        <div class="historyItemInfo">
+                            <p>@ViewBag.First.name</p>
+                            <p>#@ViewBag.First.num</p>
+                        </div>
+                    </div>
+                    <span class="arrow"> ➠</span>
+                    <div class="historyItem">
+                        <div class="historyItemInfo">
+                            <p>@ViewBag.Second.name</p>
+                            <p>#@ViewBag.Second.num</p>
+                        </div>
+                    </div>
+                    <span class="arrow"> ➠</span>
+                    <div class="historyItem">
+                        <div class="historyItemInfo">
+                            <p>@ViewBag.Third.name</p>
+                            <p>#@ViewBag.Third.num</p>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        }
+
+
+
+    </div>
+</div>
